@@ -7,21 +7,54 @@ header {
 }
 
 
+#totalTime {
+	padding: 20px 20px 20px 40px;
+	text-align: center;
+}
 
-#side {
+.startButton {
+	width: 530px;
+	height: 175px;
+	font-size: 50px;
+
+}
+
+.col-sm-5 {
 	background: #eee;
 	height: 200px;
 	margin-top: 20px;
+	text-align: center;
+
 }
 
-#test{ 
-	margin: 20px 20px 20px 0px;
+#checkMark {
+	margin-left: 20px;
+	border: 2px solid black;
+}
+#imageHolder {
+	width: 100px;
+	height: 90px;
+	border: 1px solid black;
+}
+
+#correctAnswer {
+	padding-top: 30px;
+	border: 2px solid black;
+	margin-left: 30px;
+}
+
+
+#quiz{ 
+	margin: 20px 0px 20px 0px;
 	height: 200px;
 	border: 1px solid #eee; 
 	padding:10px 40px 40px 40px;
 	background: #eee;
 	font-style: "comic sans"; 
 }
+
+
+
 
 footer {
 	background: #eee;
