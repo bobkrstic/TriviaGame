@@ -34,18 +34,22 @@ function startQuiz(){
 	$("#imageHolder").empty();
 	
 	if(questionNumber >= allQuestions.length){
-		//endQuiz();
+	
+	clearInterval(intervalId);
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
+	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Start Quiz</button>");
 	if (correct > 3) {
 		$("#correctAnswer").text("YOU ROCK");
+	} else {
+		$("#correctAnswer").text("THANK YOU!");
 	}
 	questionNumber = 0;
 	correct = 0;
 	return false;
 	}
 
-	//questionTime();
+	questionTime();
 
 	$("#quizStage").html("Question "+ (questionNumber + 1) + " of " + allQuestions.length);
 	question = allQuestions[questionNumber][0];
@@ -58,11 +62,12 @@ function startQuiz(){
 	$("#quiz").append("<input type='radio' name='choices' value='B'> " + choiceB + "<br>");
 	$("#quiz").append("<input type='radio' name='choices' value='C'> " + choiceC + "<br><br>");
 
-	$("#quiz").append("<button onclick='checkIfAnswerCorrect()'>Submit Answer</button>");
+	$("#quiz").append("<button class='subBtn' onclick='checkIfAnswerCorrect()'>Submit Answer</button>");
 }
 
 
 function checkIfAnswerCorrect(){
+
 	
 	choices = document.getElementsByName("choices");
 	for(var i=0; i<choices.length; i++){
@@ -73,73 +78,71 @@ function checkIfAnswerCorrect(){
 	if(choice == allQuestions[questionNumber][4]){
 		correct++;
 		$("#correctAnswer").text("Good Job!");
-		$("#imageHolder").append("<img src='assets/images/okSign.jpg' width='98px' height='88px'/>");
+		$("#imageHolder").append("<img src='assets/images/okSign.jpg' width='127px' height='107px'/>");
+		$(".subBtn").hide();
+		stopQtime();
+
 	} else {
-		$("#imageHolder").append("<img src='assets/images/wrongAnswer.jpg' width='98px' height='88px'/>");
+		$("#imageHolder").append("<img src='assets/images/wrongAnswer.jpg' width='127px' height='107px'/>");
 		$("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
+		$(".subBtn").hide();
+		stopQtime();
 	}
 
 	questionNumber++;
 	setTimeout(startQuiz, 3000);
-
-	// if(questionNumber >= allQuestions.length){
-	// 	endQuiz();
-	// }
-
 }
 
-window.addEventListener("load", beginning, false);
 
 function endQuiz() {
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
+	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Start Quiz</button>");
 	if (correct > 3) {
 		$("#correctAnswer").text("YOU ROCK");
+	} else {
+		$("#correctAnswer").text("THANK YOU!");
 	}
+	stopQtime();
 	questionNumber = 0;
 	correct = 0;
 	return false;
-	//stop();
 }
 
 
 	function quizTime() {
-		time = 25;
+		time = 180;
 		$("#displayQuizTime").html("00:00");
 		start();
 	}
 
-	// function questionTime() {
-	// 	qTime = 5;
-	// 	$("#timePerQuestion").html(qTime);
-	// 	startQtime();
-	// }
+	function questionTime() {
+		qTime = 10;
+		$("#timePerQuestion").html(qTime);
+		startQtime();
+	}
 
-	// function startQtime() {
-	// 	qInterval = setInterval(countQtime, 1000);
-	// }
+	function startQtime() {
+		qInterval = setInterval(countQtime, 1000);
+	}
 
-	// function countQtime() {
-	// 	qTime--;
-	// 	$("#timePerQuestion").html(qTime);
-	// 	if (qTime == 0)
-	// 	{
-	// 		stopQtime();
-	// 	}
-	// 	// 	questionNumber++;
-	// 	// }
-	// 	// if (qTime == 0 && questionNumber == 4) {
-	// 	// 	stopQtime();
-	// 	// 	endQuiz();
-	// 	// }
-	// }	
+	function countQtime() {
+		qTime--;
+		$("#timePerQuestion").html(qTime);
+		if (qTime == 0)
+		{
+			
+			stopQtime();
+			$("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
+			questionNumber++;
+			$("#quiz").html("<h3>" + question + "</h3>");
+			setTimeout(startQuiz, 3000);
+		}
+	}	
 
-	// function stopQtime () {
-	// 	clearInterval(qInterval);
-	// 	//questionNumber++;
-	// 	//startQuiz();
-	// 	//setTimeout(startQuiz, 3000)
-	// }
+	function stopQtime () {
+		clearInterval(qInterval);
+	}
 
 	function start() {
 	  intervalId = setInterval(count, 1000);
@@ -179,5 +182,12 @@ function endQuiz() {
 
 	  return minutes + ":" + seconds;
 	}
+
+
+window.addEventListener("load", beginning, false);
+
+
+// -----------------------------------------------------END OF JAVASCRIPT------------------------------------//
+
 
 
