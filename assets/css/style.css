@@ -69,6 +69,15 @@ header {
 	border: 2px solid black;
 }
 
+.imgShad {
+	/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+	box-shadow: 2px 2px 8px rgb(135,97,67);
+}
+
+.youRockImg {
+	box-shadow: 2px 2px 8px rgb(135,97,67);
+}
+
 #imageHolder {
 	width: 130px;
 	height: 110px;
@@ -86,6 +95,10 @@ header {
 
 .whenWrongAnswer {
 	 text-shadow: 2px 2px 8px #FF0000;
+}
+
+.youRock {
+	text-shadow: 2px 2px 8px rgb(135,97,67);
 }
 
 #quiz{ 

@@ -41,8 +41,8 @@ function startQuiz(){
 	$("#quizStage").html("The Quiz is now over!");
 	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Restart Quiz</button>");
 	if (correct >= 3) {
-		$("#correctAnswer").text("YOU ROCK!");
-		$("#imageHolder").append("<img src='assets/images/youRock.JPEG' width='127px' height='107px'/>");
+		$("#correctAnswer").html($("<h4 class='youRock'>YOU ROCK! YOU RULE!</h4>").hide().fadeIn(3000));
+		$("#imageHolder").append($("<img src='assets/images/youRock.JPEG' width='127px' height='107px' class='youRockImg'/>").hide().fadeIn(3000));
 	} else {
 		$("#correctAnswer").text("THANK YOU FOR PLAYING!");
 		$("#imageHolder").append("<img src='assets/images/betterLuck.JPEG' width='128px' height='108px'/>");
@@ -82,7 +82,7 @@ function checkIfAnswerCorrect(){
 	if(choice == allQuestions[questionNumber][4]){
 		correct++;
 		$("#correctAnswer").text("Good Job!");
-		$("#imageHolder").append("<img src='assets/images/okSign.jpg' width='127px' height='107px'/>");
+		$("#imageHolder").append("<img src='assets/images/okSign.jpg' width='127px' height='107px' class='imgShad'/>");
 		$(".subBtn").hide();
 		stopQtime();
 
@@ -144,7 +144,7 @@ function endQuiz() {
 			stopQtime();
 			$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
 			// $("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
-			$("#imageHolder").append("<img src='assets/images/timesUP.png' width='128px' height='108px'/>");
+			$("#imageHolder").append($("<img src='assets/images/timesUP.png' width='128px' height='108px'/>").hide().fadeIn(2000));
 			questionNumber++;
 			$(".subBtn").hide();
 			setTimeout(startQuiz, 5000);
