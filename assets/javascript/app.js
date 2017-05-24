@@ -13,7 +13,7 @@ var choices;
 var intervalId;
 var qInterval;
 var clockRunning = false;
-var time = 0;
+var time;
 var qTime = 0; 
 
 var allQuestions = [
@@ -30,6 +30,11 @@ function beginning() {
 }
 
 function startQuiz(){
+
+	if (time === 0)
+	{
+	   stop();
+	}
 
 	$("#correctAnswer").text("Good Luck!");
 	$("#imageHolder").empty();
@@ -49,6 +54,7 @@ function startQuiz(){
 		$("#imageHolder").append("<img src='assets/images/betterLuck.JPEG' width='128px' height='108px'/>");
 
 	}
+
 	questionNumber = 0;
 	correct = 0;
 	return false;
@@ -72,7 +78,6 @@ function startQuiz(){
 
 
 function checkIfAnswerCorrect(){
-
 	
 	choices = document.getElementsByName("choices");
 	for(var i=0; i<choices.length; i++){
@@ -80,6 +85,7 @@ function checkIfAnswerCorrect(){
 			choice = choices[i].value;
 		}
 	}
+
 	if(choice == allQuestions[questionNumber][4]){
 		correct++;
 		$("#correctAnswer").text("Good Job!");
@@ -110,6 +116,7 @@ function endQuiz() {
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
 	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Restart Quiz</button>");
+
 	if (correct >= 3) {
 		$("#correctAnswer").text("YOU ROCK!");
 	    $("#imageHolder").append("<img src='assets/images/youRock.JPEG' width='127px' height='107px'/>");
@@ -127,8 +134,8 @@ function endQuiz() {
 
 
 	function quizTime() {
-		time = 240;
-		$("#displayQuizTime").html("04:00");
+		time = 60;
+		$("#displayQuizTime").html("01:00");
 		start();
 	}
 
@@ -142,9 +149,11 @@ function endQuiz() {
 		qInterval = setInterval(countQtime, 1000);
 	}
 
+
 	function countQtime() {
 		qTime--;
 		$("#timePerQuestion").html(qTime);
+
 		if (qTime == 0)
 		{
 			stopQtime();
@@ -158,6 +167,10 @@ function endQuiz() {
 			$(".subBtn").hide();
 			setTimeout(startQuiz, 5000);
 		}
+		if (time === 0)
+		{
+	       stop();
+	    }
 	}	
 
 	function stopQtime () {
@@ -169,7 +182,6 @@ function endQuiz() {
 	}
 
 	function stop() {
-	 
 	  clearInterval(intervalId);
 	  endQuiz();
 	}
@@ -183,6 +195,7 @@ function endQuiz() {
 	    stop();
 	  }
 	}
+	
 
 	function timeConverter(t) {
 
