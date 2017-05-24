@@ -20,7 +20,8 @@ var allQuestions = [
     [ "Who was the first president of USA?", "Washington", "Carter", "Kennedy", "A" ],
 	[ "Who was the first man to walk on the moon?", "Aldrin", "Armstrong", "Clinton", "B" ],
 	[ "What is the circumference of the earth?", "25401", "21901", "24901", "C" ],
-	[ "Who's is the president of Columbia now?", "Juan Manuel Santos", "Pablo Gaviria Escobar", "Enrique Peña Nieto", "A" ]
+	[ "Who's is the president of Columbia now?", "Juan Manuel Santos", "Pablo Gaviria Escobar", "Enrique Peña Nieto", "A" ],
+	[ "What is the capitol of Serbia?", "Stockholm", "Sofia", "Belgrade", "C"]
 ];
 
 function beginning() {
@@ -38,11 +39,14 @@ function startQuiz(){
 	clearInterval(intervalId);
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
-	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Start Quiz</button>");
-	if (correct > 3) {
-		$("#correctAnswer").text("YOU ROCK");
+	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Restart Quiz</button>");
+	if (correct >= 3) {
+		$("#correctAnswer").text("YOU ROCK!");
+		$("#imageHolder").append("<img src='assets/images/youRock.JPEG' width='127px' height='107px'/>");
 	} else {
-		$("#correctAnswer").text("THANK YOU!");
+		$("#correctAnswer").text("THANK YOU FOR PLAYING!");
+		$("#imageHolder").append("<img src='assets/images/betterLuck.JPEG' width='128px' height='108px'/>");
+
 	}
 	questionNumber = 0;
 	correct = 0;
@@ -56,13 +60,13 @@ function startQuiz(){
 	choiceA = allQuestions[questionNumber][1];
 	choiceB = allQuestions[questionNumber][2];
 	choiceC = allQuestions[questionNumber][3];
-	$("#quiz").html("<h3>" + question + "</h3>");
+	$("#quiz").html($("<h3 class='questionText'>" + question + "</h3>").hide().fadeIn(2000));
 
-	$("#quiz").append("<input type='radio' name='choices' value='A'> " + choiceA + "<br>");
-	$("#quiz").append("<input type='radio' name='choices' value='B'> " + choiceB + "<br>");
-	$("#quiz").append("<input type='radio' name='choices' value='C'> " + choiceC + "<br><br>");
+	$("#quiz").append($("<input type='radio' name='choices' value='A'> " + choiceA + "<br>").hide().fadeIn(2000));
+	$("#quiz").append($("<input type='radio' name='choices' value='B'> " + choiceB + "<br>").hide().fadeIn(2000));
+	$("#quiz").append($("<input type='radio' name='choices' value='C'> " + choiceC + "<br><br>").hide().fadeIn(2000));
 
-	$("#quiz").append("<button class='subBtn' onclick='checkIfAnswerCorrect()'>Submit Answer</button>");
+	$("#quiz").append($("<button class='subBtn' onclick='checkIfAnswerCorrect()'>Submit Answer</button>").hide().fadeIn());
 }
 
 
@@ -84,24 +88,29 @@ function checkIfAnswerCorrect(){
 
 	} else {
 		$("#imageHolder").append("<img src='assets/images/wrongAnswer.jpg' width='127px' height='107px'/>");
-		$("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
+		// $("#correctAnswer").html("Correct Answer is: " + allQuestions[questionNumber][4]);
+		$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
 		$(".subBtn").hide();
 		stopQtime();
 	}
 
 	questionNumber++;
-	setTimeout(startQuiz, 3000);
+	setTimeout(startQuiz, 5000);
 }
 
 
 function endQuiz() {
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
-	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Start Quiz</button>");
-	if (correct > 3) {
-		$("#correctAnswer").text("YOU ROCK");
+	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Restart Quiz</button>");
+	if (correct >= 3) {
+		$("#correctAnswer").text("YOU ROCK!");
+	    $("#imageHolder").append("<img src='assets/images/youRock.JPEG' width='127px' height='107px'/>");
+
 	} else {
-		$("#correctAnswer").text("THANK YOU!");
+		$("#correctAnswer").text("THANK YOU FOR PLAYING!");
+		$("#imageHolder").append("<img src='assets/images/betterLuck.JPEG' width='128px' height='108px'/>");
+
 	}
 	stopQtime();
 	questionNumber = 0;
@@ -111,8 +120,8 @@ function endQuiz() {
 
 
 	function quizTime() {
-		time = 180;
-		$("#displayQuizTime").html("00:00");
+		time = 240;
+		$("#displayQuizTime").html("04:00");
 		start();
 	}
 
@@ -133,10 +142,12 @@ function endQuiz() {
 		{
 			
 			stopQtime();
-			$("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
+			$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
+			// $("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
+			$("#imageHolder").append("<img src='assets/images/timesUP.png' width='128px' height='108px'/>");
 			questionNumber++;
-			$("#quiz").html("<h3>" + question + "</h3>");
-			setTimeout(startQuiz, 3000);
+			$(".subBtn").hide();
+			setTimeout(startQuiz, 5000);
 		}
 	}	
 

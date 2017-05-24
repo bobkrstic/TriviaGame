@@ -1,14 +1,19 @@
 
 header {
 	background: #eee;
-	margin: 20px auto;
 	margin-bottom: 0px;
 	height: 100px;
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 }
 
-div {
-	font-family: "Papyrus";
+#leftHeader {
+ 	padding-top: 15px;
+ 	padding-left: 20px;
+}
+
+.container {
+	margin-top: 40px;
+	font-family: "Papyrus", "Courier New", "Andalus", "Comic Sans MS";
 }
 
 
@@ -25,13 +30,30 @@ div {
 	width: 530px;
 	height: 175px;
 	font-size: 50px;
+	/*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+}
 
+.subBtn {
+	padding-top: 6px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .btn {
+	background-color: rgb(233, 233, 233);
 	width: 530px;
 	height: 100px;
 	font-size: 50px;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn:hover, .subBtn:hover, .startButton:hover {
+	background-color: rgb(222, 222, 222);
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.startButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .col-sm-5 {
@@ -54,10 +76,16 @@ div {
 }
 
 #correctAnswer {
-	padding-top: 30px;
+	/*text-shadow: 2px 2px 8px #FF0000;*/
+	padding-top: 50px;
+	font-weight: bold; 
 	border: 2px solid black;
 	margin-left: 30px;
 	font-size: 20px;
+}
+
+.whenWrongAnswer {
+	 text-shadow: 2px 2px 8px #FF0000;
 }
 
 #quiz{ 
@@ -69,10 +97,13 @@ div {
 	font-style: "comic sans"; 
 }
 
-footer {
+footer.row {
 	background: #eee;
 	height: 100px;
 	text-align: center;
 	padding-top: 40px;
+
 }
+
+
 /*-------------------------------------------------------------END OF CSS----------------------------*/
