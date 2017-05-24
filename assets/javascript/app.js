@@ -40,6 +40,7 @@ function startQuiz(){
 	$("#quiz").html("<h2>You guessed " + correct + " out of " + allQuestions.length + " questions correct</h2>");
 	$("#quizStage").html("The Quiz is now over!");
 	$("#quiz").append("<button class='btn' class='startButton' onclick='startQuiz(), quizTime()'>Restart Quiz</button>");
+	
 	if (correct >= 3) {
 		$("#correctAnswer").html($("<h4 class='youRock'>YOU ROCK! YOU RULE!</h4>").hide().fadeIn(3000));
 		$("#imageHolder").append($("<img src='assets/images/youRock.JPEG' width='127px' height='107px' class='youRockImg'/>").hide().fadeIn(3000));
