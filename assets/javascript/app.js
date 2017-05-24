@@ -63,9 +63,9 @@ function startQuiz(){
 	choiceC = allQuestions[questionNumber][3];
 	$("#quiz").html($("<h3 class='questionText'>" + question + "</h3>").hide().fadeIn(2000));
 
-	$("#quiz").append($("<input type='radio' name='choices' value='A'> " + choiceA + "<br>").hide().fadeIn(2000));
-	$("#quiz").append($("<input type='radio' name='choices' value='B'> " + choiceB + "<br>").hide().fadeIn(2000));
-	$("#quiz").append($("<input type='radio' name='choices' value='C'> " + choiceC + "<br><br>").hide().fadeIn(2000));
+	$("#quiz").append($("<input id='clickO' type='radio' name='choices' value='A'> " + choiceA + "<br>").hide().fadeIn(2000));
+	$("#quiz").append($("<input id='click1' type='radio' name='choices' value='B'> " + choiceB + "<br>").hide().fadeIn(2000));
+	$("#quiz").append($("<input id='click2' type='radio' name='choices' value='C'> " + choiceC + "<br><br>").hide().fadeIn(2000));
 
 	$("#quiz").append($("<button class='subBtn' onclick='checkIfAnswerCorrect()'>Submit Answer</button>").hide().fadeIn());
 }
@@ -85,6 +85,9 @@ function checkIfAnswerCorrect(){
 		$("#correctAnswer").text("Good Job!");
 		$("#imageHolder").append("<img src='assets/images/okSign.jpg' width='127px' height='107px' class='imgShad'/>");
 		$(".subBtn").hide();
+		document.getElementById("clickO").disabled = true;
+		document.getElementById("click1").disabled = true;
+		document.getElementById("click2").disabled = true;
 		stopQtime();
 
 	} else {
@@ -92,6 +95,9 @@ function checkIfAnswerCorrect(){
 		// $("#correctAnswer").html("Correct Answer is: " + allQuestions[questionNumber][4]);
 		$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
 		$(".subBtn").hide();
+		document.getElementById("clickO").disabled = true;
+		document.getElementById("click1").disabled = true;
+		document.getElementById("click2").disabled = true;
 		stopQtime();
 	}
 
@@ -141,11 +147,13 @@ function endQuiz() {
 		$("#timePerQuestion").html(qTime);
 		if (qTime == 0)
 		{
-			
 			stopQtime();
 			$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
-			// $("#correctAnswer").text("Correct Answer is: " + allQuestions[questionNumber][4]);
 			$("#imageHolder").append($("<img src='assets/images/timesUP.png' width='128px' height='108px'/>").hide().fadeIn(2000));
+			// $("#imageHolder").append($("<img src='https://github.com/bobkrstic/TriviaGame/assets/images/timesUp.png' width='128px' height='108px'/>").hide().fadeIn(2000));
+			document.getElementById("clickO").disabled = true;
+			document.getElementById("click1").disabled = true;
+			document.getElementById("click2").disabled = true;
 			questionNumber++;
 			$(".subBtn").hide();
 			setTimeout(startQuiz, 5000);
