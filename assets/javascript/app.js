@@ -154,6 +154,11 @@ function endQuiz() {
 		qTime--;
 		$("#timePerQuestion").html(qTime);
 
+		if (time === 0)
+		{
+	       stop();
+	    }
+
 		if (qTime == 0)
 		{
 			stopQtime();
@@ -167,10 +172,6 @@ function endQuiz() {
 			$(".subBtn").hide();
 			setTimeout(startQuiz, 5000);
 		}
-		if (time === 0)
-		{
-	       stop();
-	    }
 	}	
 
 	function stopQtime () {
@@ -183,6 +184,7 @@ function endQuiz() {
 
 	function stop() {
 	  clearInterval(intervalId);
+	  stopQtime();
 	  endQuiz();
 	}
 
@@ -195,7 +197,7 @@ function endQuiz() {
 	    stop();
 	  }
 	}
-	
+
 
 	function timeConverter(t) {
 
