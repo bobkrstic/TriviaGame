@@ -1,4 +1,6 @@
 
+"use strict"
+
 var questionNumber = 0; 
 var correct = 0;
 var quizStage;
@@ -163,7 +165,7 @@ function endQuiz() {
 		{
 			stopQtime();
 			$("#correctAnswer").html("<h3 class='whenWrongAnswer'>Correct Answer is: " + allQuestions[questionNumber][4] + "</h3>");
-			$("#imageHolder").append($("<img src='assets/images/timesUP.png' width='128px' height='108px'/>").hide().fadeIn(2000));
+			$("#imageHolder").append($("<img src='assets/images/timesUp.png' width='128px' height='108px'/>").hide().fadeIn(2000));
 			// $("#imageHolder").append($("<img src='https://github.com/bobkrstic/TriviaGame/assets/images/timesUp.png' width='128px' height='108px'/>").hide().fadeIn(2000));
 			document.getElementById("clickO").disabled = true;
 			document.getElementById("click1").disabled = true;
